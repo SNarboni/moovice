@@ -7,7 +7,7 @@ export default class NavBar extends Component {
             <>
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <h2 className="navbar-brand">Mon site : Moovice</h2>
+          <h2 className="navbar-brand">Moovice</h2>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
