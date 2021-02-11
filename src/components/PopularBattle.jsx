@@ -5,10 +5,19 @@ class PopularBattle extends React.Component {
 
     constructor(props){
         super(props);
+        let saveList = localStorage.getItem('curent')
+        saveList = parseInt(saveList)
+        if (saveList) {
+            saveList = saveList;
+        }else{
+            saveList = 0;
+        }
         this.state ={
+            savelist:saveList,
             movies:[],
             currentBattle:0,
-            favorite:localStorage.getItem("favorite"),
+            currentsave:0,
+            favorite:[],
         }
     }
 
@@ -19,43 +28,60 @@ class PopularBattle extends React.Component {
                 this.setState({
                     movies: moviesList.results
                 })
-                console.log("movies:",this.state.movies)
             }).catch(error => alert("error"))
+    }
+
+    sauvegardeDansFav=()=>{
+        localStorage.setItem("favId",JSON.stringify([...this.state.favorite, this.state.movies[this.state.currentBattle].id]))
+        this.setState({favorite: [...this.state.favorite, this.state.movies[this.state.currentBattle].id]})
+        localStorage.setItem("curent",this.state.currentsave)
+        this.setState({
+            currentsave : this.state.currentsave + 1
+        })
+    }
+
+    sauvegardeDansFav2=()=>{
+        localStorage.setItem("favId",JSON.stringify([...this.state.favorite, this.state.movies[this.state.currentBattle +1].id]))
+        this.setState({favorite: [...this.state.favorite, this.state.movies[this.state.currentBattle +1 ].id]})
+        localStorage.setItem("curent",this.state.currentsave)
+        this.setState({
+            currentsave : this.state.currentsave + 1
+        })
     }
 
     saveJaime =()=>{
         this.setState({
-            currentBattle: this.state.currentBattle +2
+            currentBattle: this.state.currentBattle + 2,
+            
          })
-        console.log(this.state.movies[this.state.currentBattle].id)
-        localStorage.setItem("favorite", this.state.movies[this.state.currentBattle].id)
+        this.sauvegardeDansFav()
     }
+
     saveJaime2 =()=>{
         this.setState({
-            currentBattle: this.state.currentBattle +2
+            currentBattle: this.state.currentBattle + 2,
          })
-        console.log(this.state.movies[this.state.currentBattle +1].id)
-        localStorage.setItem("favorite", this.state.movies[this.state.currentBattle + 1].id)
+        this.sauvegardeDansFav2()
     }
 
     render() {
-        console.log('curr',this.state.currentBattle)
-        console.log('curr',this.state.currentBattle+1)
+        console.log("battle",this.state.currentBattle)
+        console.log("save",this.state.currentsave)
+        console.log("saveList",this.state.saveList)
         
-        if(this.state.movies.length === this.state.currentBattle ){
+        if(this.state.movies.length === this.state.currentBattle  || this.state.currentsave == 11){
             return(
                 <h1>Vous avez parcouru tous les films</h1>
             )
-
+        }else if(this.state.savelist == 9){
+            return(
+                <h1>Vous avez déja choisie tous vos films préférés</h1>
+            )
         }else{
             return (
-                <div>
-                    <a onClick={this.saveJaime}>
-                        <Card {...this.state.movies[this.state.currentBattle]} ></Card>
-                    </a>
-                    <a onClick={this.saveJaime2}>
-                        <Card {...this.state.movies[this.state.currentBattle + 1]} ></Card>
-                    </a>
+                <div className="d-flex flex-wrap justify-content-center">
+                    <Card onClick={this.saveJaime} {...this.state.movies[this.state.currentBattle]} ></Card>
+                    <Card onClick={this.saveJaime2} {...this.state.movies[this.state.currentBattle + 1]} ></Card>
                 </div>
             )
         }

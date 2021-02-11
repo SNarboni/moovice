@@ -6,7 +6,7 @@ class Card extends React.Component {
    
     render() {
         return (	
-                <div className="movie-card col-3">
+                <div className="movie-card col-3" onClick={this.props.onClick}>
                     <div className="movie-header manOfSteel">
                 <img src={`https://image.tmdb.org/t/p/w300/${this.props.poster_path}`}  alt="..."/>
                     </div>
