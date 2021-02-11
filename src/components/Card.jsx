@@ -3,46 +3,39 @@ import "./../App.css"
 
 
 class Card extends React.Component {
+   
     render() {
-        return (
-            <div class="container">	
-                <div class="movie-card">
-                    <div class="movie-header manOfSteel">
-                        <div class="header-icon-container">
-                            <a href="#">
-                                <i class="material-icons header-icon"></i>
-                            </a>
-                        </div>
+        return (	
+                <div className="movie-card col-3">
+                    <div className="movie-header manOfSteel">
+                <img src={`https://image.tmdb.org/t/p/w300/${this.props.poster_path}`}  alt="..."/>
                     </div>
-                    <div class="movie-content">
-                        <div class="movie-content-header">
+                    <div className="movie-content">
+                        <div className="movie-content-header">
                             <a href="#">
-                                <h3 class="movie-title">Man of Steel</h3>
+                                <h3 className="movie-title">{this.props.title}</h3>
                             </a>
-                            <div class="imax-logo">
-                            </div>
                         </div>
-                        <div class="movie-info">
-                            <div class="info-section">
+                        <div className="movie-info">
+                            <div className="info-section">
                                 <label>Date & Time</label>
                                 <span>Sun 8 Sept - 10:00PM</span>
                             </div>
-                            <div class="info-section">
+                            <div className="info-section">
                                 <label>Screen</label>
                                 <span>03</span>
                             </div>
-                            <div class="info-section">
+                            <div className="info-section">
                                 <label>Row</label>
                                 <span>F</span>
                             </div>
-                            <div class="info-section">
+                            <div className="info-section">
                                 <label>Seat</label>
                                 <span>21,22</span>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         )
     }
 }

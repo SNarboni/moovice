@@ -1,6 +1,14 @@
 import React from 'react';
 
 class Favorites extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.state ={
+            favorites : localStorage.getItem()
+        }
+    }
+
     render() {
         return (
             <div>

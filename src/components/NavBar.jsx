@@ -14,19 +14,22 @@ export default class NavBar extends Component {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link to="/" className="nav-link active" aria-current="page">home</Link>
+                <Link to="/" className="nav-link active" aria-current="page">Home</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/weekly">weekly</Link>
+                <Link className="nav-link" to="/weekly">Weekly</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/popular">popular</Link>
+                <Link className="nav-link" to="/weeklyBattle">WeeklyBattle</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/popular-battle">popular-battle</Link>
+                <Link className="nav-link" to="/popular">Popular</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/favorites">favorites</Link>
+                <Link className="nav-link" to="/popular-battle">Popular-battle</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/favorites">Favorites</Link>
               </li>
             </ul>
           </div>
