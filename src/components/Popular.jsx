@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from './Card'
 
 class Popular extends React.Component {
 
@@ -14,20 +15,11 @@ class Popular extends React.Component {
 
 
 
-    searchMovie = (number) =>{
-    fetch("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=efd8a07427b2c721a89376dbc34799dd")
-    .then(response => response.json())
-    .then(movieList => {
-        this.setState({
-            movies:movieList,
-            name : movieList.results[number].title,
-            id : movieList.results[number].id,
-        })
-        .catch(error => alert("error"))
-        console.log(this.state.movies)
-    })
+    // searchMovie = (number) =>{
+       
+    // })
     
-    }
+    // }
     
     onChange=(e)=>{
         this.setState({
@@ -35,19 +27,26 @@ class Popular extends React.Component {
         })
     }
 
-    componentDidMount = ()=>{
+    componentDidMount (){
+        fetch("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=efd8a07427b2c721a89376dbc34799dd")
+        .then(response => response.json())
+        .then(movieList => {
+            this.setState({
+                movies: movieList.results,
+            })
+            })
+            .catch(error => alert("error"))
     }
 
 
     render() {
         return (
             <div>
-                <h1>Popular</h1>
-                <input type="number" onChange={this.onChange}/>
-                <button onClick={(e)=> this.searchMovie(this.state.inputValue)}>search</button>
-                {this.state.movies.map((moo) => {
-                    return <h1>{moo.results[3].title}</h1>
-                })}
+                <Card />
+                {/* <h1>Popular</h1>
+                {this.state.movies.map((mov) => {
+                    return(<p>{mov.title}</p>)
+                })} */}
             </div>
         )
     }
